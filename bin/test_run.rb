@@ -10,14 +10,49 @@ require "colorize"
 require "tty-prompt"
 
 
+puts "Welcome to My World Forecast, Please enter a Username: "
+user_response = gets.chomp
+user = User.find_or_create_by(username: user_response)
 
-puts "Please input your location in the following format (Town or City, State): "
-location_response = gets.chomp
-location = Location.new(location_response)
-coordinates = location.converter
+prompt = TTY::Prompt.new
+
+choice = prompt.select("Welcome #{user.username}, where would you like to check the weather? ") do |menu|
+  menu.choice 'Look Up New Location'
+  menu.choice 'View Saved Locations'
+  menu.choice 'Exit'
+end
+
+if choice == 'Look Up New Location'
+  puts "Please input your location in the following format (Town or City, State): "
+  location_response = gets.chomp
+  location = Location.new(location_response)
+  coordinates = location.converter
+
+  get_weather(coordinates)
+
+  save_prompt = TTY::Prompt.new
+
+  confirmation = save_prompt.yes?('Would you like to save this location?')
+  if confirmation
+    
+  else
+    puts "WIP"
+  end
+elsif choice == 'View Saved Locations'
+  puts ":)"
+else
+  puts "Have a Good Day!"
+  exit
+end
 
 
-get_weather(coordinates)
+# puts "Please input your location in the following format (Town or City, State): "
+# location_response = gets.chomp
+# location = Location.new(location_response)
+# coordinates = location.converter
+#
+#
+# get_weather(coordinates)
 
 ################# Using the MapQuest API gets the longitude and latitude of any town/state given ##################################
 # map_string = RestClient.get("http://www.mapquestapi.com/geocoding/v1/address?key=#{ENV['MAP_QUEST_API_KEY']}&location=#{location}")
