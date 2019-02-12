@@ -9,6 +9,13 @@ require "pry"
 require "colorize"
 require "tty-prompt"
 
+def converter(location)
+  map_string = RestClient.get("http://www.mapquestapi.com/geocoding/v1/address?key=#{ENV['MAP_QUEST_API_KEY']}&location=#{location}")
+  map_hash = JSON.parse(map_string)
+  map_hash["results"][0]["locations"][0]
+end
+
+
 
 puts "Welcome to My World Forecast, Please enter a Username: "
 user_response = gets.chomp
@@ -25,16 +32,17 @@ end
 if choice == 'Look Up New Location'
   puts "Please input your location in the following format (Town or City, State): "
   location_response = gets.chomp
-  location = Location.new(location_response)
-  coordinates = location.converter
+  location_hash = converter(location_response)
 
-  get_weather(coordinates)
+
+  get_weather(location_hash["latLng"])
 
   save_prompt = TTY::Prompt.new
 
   confirmation = save_prompt.yes?('Would you like to save this location?')
   if confirmation
-    
+    Location.find_or_create_by(city: location_hash["adminArea5"], country: location_hash["adminArea1"], latitude: location_hash["latLng"]["lat"], longitude: location_hash["latLng"]["lng"])
+    User_location.create(user.id, location.id)
   else
     puts "WIP"
   end
@@ -45,25 +53,6 @@ else
   exit
 end
 
-
-# puts "Please input your location in the following format (Town or City, State): "
-# location_response = gets.chomp
-# location = Location.new(location_response)
-# coordinates = location.converter
-#
-#
-# get_weather(coordinates)
-
-################# Using the MapQuest API gets the longitude and latitude of any town/state given ##################################
-# map_string = RestClient.get("http://www.mapquestapi.com/geocoding/v1/address?key=#{ENV['MAP_QUEST_API_KEY']}&location=#{location}")
-# map_hash = JSON.parse(map_string)
-
-
-####################### Using Dark Star API we need to take the long, and lat from the above api and use it #####################
-# response_string = RestClient.get("https://api.darksky.net/forecast/#{ENV['DARK_SKY_API_KEY']}/#{coordinates["lat"]},#{coordinates["lng"]}")
-# response_hash = JSON.parse(response_string)
-
-# puts "#{response_hash["currently"]["temperature"]} degrees"
 
 
 ################Example of using tty-prompt########################
