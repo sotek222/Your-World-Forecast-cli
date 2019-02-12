@@ -1,8 +1,18 @@
 require_relative '../config/environment'
 require_relative '../lib/intro'
+require_relative '../app/user'
+require_relative '../app/location'
+require_relative '../app/user_location'
+
 require "pry"
 require "colorize"
 require "tty-prompt"
+
+
+
+binding.pry
+
+"we hit the pry!!!"
 
 
 # puts "Please input your location in the following format (Town or City, State): "
