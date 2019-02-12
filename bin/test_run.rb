@@ -16,14 +16,18 @@ def converter(location)
 end
 
 
+def user_login
+  puts "Welcome to My World Forecast, Please enter a Username: "
+  user_response = gets.chomp
+  @user = User.find_or_create_by(username: user_response)
+end
 
-puts "Welcome to My World Forecast, Please enter a Username: "
-user_response = gets.chomp
-user = User.find_or_create_by(username: user_response)
 
+
+def main_menu
 prompt = TTY::Prompt.new
 
-choice = prompt.select("Welcome #{user.username}, where would you like to check the weather? ") do |menu|
+choice = prompt.select("Welcome #{@user.username}, where would you like to check the weather? ") do |menu|
   menu.choice 'Look Up New Location'
   menu.choice 'View Saved Locations'
   menu.choice 'Exit'
@@ -41,18 +45,26 @@ if choice == 'Look Up New Location'
 
   confirmation = save_prompt.yes?('Would you like to save this location?')
   if confirmation
-    Location.find_or_create_by(city: location_hash["adminArea5"], country: location_hash["adminArea1"], latitude: location_hash["latLng"]["lat"], longitude: location_hash["latLng"]["lng"])
-    User_location.create(user.id, location.id)
+    location = Location.find_or_create_by(city: location_hash["adminArea5"], country: location_hash["adminArea1"], latitude: location_hash["latLng"]["lat"], longitude: location_hash["latLng"]["lng"])
+    UserLocation.create(user_id: @user.id, location_id: location.id)
+    scroll_text('Saved Successfully')
+    puts "\n"
+    main_menu
   else
-    puts "WIP"
+    main_menu
   end
 elsif choice == 'View Saved Locations'
-  puts ":)"
+  @user.locations.map do |location|
+    puts location.city
+  end
 else
   puts "Have a Good Day!"
   exit
 end
+end
 
+user_login
+main_menu
 
 
 ################Example of using tty-prompt########################
