@@ -64,11 +64,19 @@ def main_menu
   elsif choice == 'View Saved Locations'
     select_prompt = TTY::Prompt.new
 
-    select_prompt.select("Here are your saved locations:", marker: @sun_marker) do |menu|
+    menu_choice = select_prompt.select("Here are your saved locations:", marker: @sun_marker) do |menu|
       menu.choice "Exit"
       @user.locations.each do |location|
         menu.choice "#{location.city}"
       end
+    end
+    if menu_choice == "Exit"
+      main_menu
+    else
+      test = converter(menu_choice)
+      get_weather(menu_choice, test["latLng"])
+      prompt.keypress("Press any key to return to the main menu")
+      main_menu
     end
   elsif choice == 'Delete Saved Locations'
     delete_prompt = TTY::Prompt.new
@@ -84,6 +92,8 @@ def main_menu
       location = Location.find_by(city: delete_response)
       UserLocation.where(location_id: location.id, user_id: @user.id).destroy_all
       @user.locations.reload
+      puts "Location successfully deleted!"
+      sleep 1.0
       main_menu
     end
   elsif choice == 'Delete Account'
