@@ -1,6 +1,6 @@
 def user_login
   puts "Welcome to My World Forecast, Please enter a Username: "
-  user_response = gets.chomp
+  user_response = gets.chomp.strip
   @user = User.find_or_create_by(username: user_response)
 end
 

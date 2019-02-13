@@ -1,8 +1,3 @@
-require_relative '../config/environment'
-require "pry"
-require "colorize"
-require "tty-prompt"
-
 def main_menu
     prompt = TTY::Prompt.new
 
@@ -15,11 +10,11 @@ def main_menu
     end
   case choice
   when 'Look Up New Location'
-    puts "Please input your location (Zipcode or City Name, State): "
+    puts "Please input your location (City Name, State, and Country): "
     location_response = gets.chomp
     location_hash = converter(location_response)
     spacer
-    get_weather(location_hash["adminArea5"], location_hash["latLng"])
+    get_weather(location_hash["adminArea5"], location_hash["adminArea1"], location_hash["latLng"])
     save_location(location_hash)
   when 'View Saved Locations'
     view_saved_locations
