@@ -8,8 +8,10 @@ def save_location(location_hash)
     @user.locations.reload
     puts 'Saved Successfully'
     spacer
+    system 'clear'
     main_menu
   else
+    system 'clear'
     main_menu
   end
 end
@@ -29,7 +31,7 @@ def view_saved_locations
     any_key_prompt = TTY::Prompt.new
     selected_local = converter(menu_choice)
     get_weather(selected_local["adminArea5"], selected_local["adminArea1"], selected_local["latLng"])
-    any_key_prompt.keypress("Press any key to return to the main menu".blink)
+    any_key_prompt.keypress("Press any key to return to the main menu".yellow.blink)
     system 'clear'
     main_menu
   end
@@ -51,6 +53,7 @@ def delete_saved_location
     @user.locations.reload
     puts "Location successfully deleted!"
     sleep 1.0
+    system 'clear'
     main_menu
   end
 end

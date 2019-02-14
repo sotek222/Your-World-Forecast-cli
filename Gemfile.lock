@@ -30,6 +30,7 @@ GEM
     minitest (5.10.1)
     necromancer (0.4.0)
     netrc (0.11.0)
+    paint (2.1.0)
     pastel (0.7.2)
       equatable (~> 0.5.0)
       tty-color (~> 0.4.0)
@@ -75,6 +76,9 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
+    unicode-display_width (1.4.1)
+    whirly (0.2.6)
+      unicode-display_width (~> 1.1)
     wisper (2.0.0)
 
 PLATFORMS
@@ -83,12 +87,14 @@ PLATFORMS
 DEPENDENCIES
   colorize
   dotenv
+  paint
   pry
   require_all
   rest-client
   sinatra-activerecord
   sqlite3
   tty-prompt
+  whirly
 
 BUNDLED WITH
    1.16.6

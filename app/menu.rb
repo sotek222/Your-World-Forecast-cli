@@ -1,13 +1,14 @@
 def main_menu
     prompt = TTY::Prompt.new
 
-    choice = prompt.select("Hello #{@user.username}, would you like to check the weather?", marker: @sun_marker) do |menu|
+    choice = prompt.select("Hello #{@user.username.light_yellow}, would you like to check the weather?", marker: @sun_marker) do |menu|
       menu.choice 'Look Up New Location'
       menu.choice 'View Saved Locations'
       menu.choice 'Delete Saved Locations'
       menu.choice 'Edit Account'
       menu.choice 'Exit'
     end
+  system 'clear'
   case choice
   when 'Look Up New Location'
     puts "Please input your location (City Name, State, and Country): "

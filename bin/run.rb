@@ -3,12 +3,16 @@ require_all 'app'
 require "pry"
 require "colorize"
 require "tty-prompt"
+require 'whirly'
+require 'paint'
+
+
 
 system 'clear'
+time_symbol
 play_music
 sleep 1.0
-logo
 spacer
 user_login
-system 'clear'
+whirly_loader("Loading Weather Database...")
 main_menu
