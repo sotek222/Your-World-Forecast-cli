@@ -8,6 +8,7 @@ def user_login
 end
 
 def edit_account
+  still_logo
   puts "What would you like to do with your account?"
   options = ['Edit Username', 'Delete Account', 'Exit']
   num = 1
@@ -28,7 +29,7 @@ def edit_account
     system 'clear'
     main_menu
   else
-    puts "Please Enter A Valid Input!".yellow
+    puts "Please Enter A Valid Input!".light_yellow
     sleep 1.0
     system 'clear'
     edit_account
@@ -36,11 +37,12 @@ def edit_account
 end
 
 def update_username
+  still_logo
   puts "Please Enter a New Username"
   new_name = gets.chomp.strip
   if User.exists?(username: new_name)
-    puts "We're sorry, that username has already been taken."
-    puts "Please try again."
+    puts "We're sorry, that username has already been taken.".light_yellow
+    puts "Please try again.".light_yellow
     sleep 1.0
     system 'clear'
     update_username
@@ -54,7 +56,8 @@ def update_username
 end
 
 def delete_account
-  puts 'Are you sure you want to delete your account? (Y/n)'.yellow
+  still_logo
+  puts 'Are you sure you want to delete your account? (Y/n)'.light_yellow
   response = gets.chomp.strip.downcase
   if response == "y"
     UserLocation.where(user_id: @user.id).destroy_all
@@ -64,7 +67,8 @@ def delete_account
   elsif response == "n"
     main_menu
   else
-    puts "Please enter a valid response.".yellow
+    puts "Please enter a valid response.".light_yellow
+    system 'clear'
     delete_account
   end
 end

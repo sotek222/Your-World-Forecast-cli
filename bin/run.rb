@@ -14,5 +14,5 @@ play_music
 sleep 1.0
 spacer
 user_login
-whirly_loader("Loading Weather Database...")
+whirly_loader("Loading Your Account...")
 main_menu

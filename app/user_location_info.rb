@@ -1,4 +1,5 @@
 def save_location(location_hash)
+
   save_prompt = TTY::Prompt.new
 
   confirmation = save_prompt.yes?('Would you like to save this location?')
@@ -17,6 +18,7 @@ def save_location(location_hash)
 end
 
 def view_saved_locations
+  still_logo
   select_prompt = TTY::Prompt.new
 
   menu_choice = select_prompt.select("Here are your saved locations:", marker: @sun_marker) do |menu|
@@ -26,6 +28,7 @@ def view_saved_locations
     end
   end
   if menu_choice == "Exit"
+    system 'clear'
     main_menu
   else
     any_key_prompt = TTY::Prompt.new
@@ -39,6 +42,7 @@ end
 
 def delete_saved_location
   delete_prompt = TTY::Prompt.new
+  still_logo
   delete_response = delete_prompt.select("Here are your saved locations please select a location to delete:", marker: @sun_marker) do |menu|
     menu.choice "Exit"
     @user.locations.each do |location|
@@ -46,6 +50,7 @@ def delete_saved_location
     end
   end
   if delete_response == "Exit"
+    system 'clear'
     main_menu
   else
     location = Location.find_by(city: delete_response.split(", ").first)

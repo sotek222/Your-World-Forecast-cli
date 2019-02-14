@@ -1,10 +1,10 @@
-@sun_marker = "☼"
+@sun_marker = "🌤"
 
 def time_symbol
   if Time.now.hour >= 5 && Time.now.hour < 18
-    @sun_marker = "☼"
+    @sun_marker = "🌤"
   else
-    @sun_marker = "☽"
+    @sun_marker = "🌙"
   end
 end
 
@@ -18,6 +18,12 @@ end
 def spacer
   puts "\n\n"
 end
+
+# def spacer(number)
+#   number.times do
+#     puts "\n"
+#   end
+# end
 
 def good_bye
   sleep 1.0
