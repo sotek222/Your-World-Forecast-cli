@@ -73,7 +73,7 @@ def update_username
     system 'clear'
     update_username
   else
-    @user.username = new_name
+    @user.update(:username => new_name)
     puts "New Username: #{@user.username.green.blink}"
     sleep 2.0
     system 'clear'
