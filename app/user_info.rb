@@ -7,6 +7,32 @@ def user_login
   system 'clear'
 end
 
+def view_account
+  still_logo
+
+  puts "Here is your account information:"
+
+  spec_spacer(1)
+  table = Terminal::Table.new :title => "Account Info".green do |t|
+    t << ['Username'.underline, "#{@user.username}"]
+    t.add_separator
+    t.add_row ['No. of Locations'.underline, "#{@user.locations.size}"]
+    t.add_separator
+    t.add_row ['Join Date'.underline, "#{@user.created_at}"]
+  end
+  table.align_column(1, :center)
+  puts table
+
+  spec_spacer(1)
+  any_key_prompt = TTY::Prompt.new
+  any_key_prompt.keypress("Press any key to return to the main menu".light_yellow.blink)
+
+  system 'clear'
+
+  main_menu
+end
+
+
 def edit_account
   still_logo
   puts "What would you like to do with your account?"

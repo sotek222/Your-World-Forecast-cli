@@ -19,11 +19,11 @@ def spacer
   puts "\n\n"
 end
 
-# def spacer(number)
-#   number.times do
-#     puts "\n"
-#   end
-# end
+def spec_spacer(number)
+  number.times do
+    puts "\n"
+  end
+end
 
 def good_bye
   sleep 1.0

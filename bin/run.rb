@@ -1,10 +1,11 @@
 require_relative '../config/environment'
 require_all 'app'
-require "pry"
-require "colorize"
-require "tty-prompt"
+require 'pry'
+require 'colorize'
+require 'tty-prompt'
 require 'whirly'
 require 'paint'
+require 'terminal-table'
 
 
 

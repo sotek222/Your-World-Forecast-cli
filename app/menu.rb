@@ -5,6 +5,7 @@ def main_menu
       menu.choice 'Look Up New Location'
       menu.choice 'View Saved Locations'
       menu.choice 'Delete Saved Locations'
+      menu.choice 'View Account'
       menu.choice 'Edit Account'
       menu.choice 'Exit'
     end
@@ -25,10 +26,12 @@ def main_menu
     view_saved_locations
   when 'Delete Saved Locations'
     delete_saved_location
+  when 'View Account'
+    view_account
   when 'Edit Account'
     edit_account
   else
-    puts "Have a Good Day!"
+    bye_logo
     good_bye
   end
 end

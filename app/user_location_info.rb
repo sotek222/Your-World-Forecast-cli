@@ -34,7 +34,7 @@ def view_saved_locations
     any_key_prompt = TTY::Prompt.new
     selected_local = converter(menu_choice)
     get_weather(selected_local["adminArea5"], selected_local["adminArea1"], selected_local["latLng"])
-    any_key_prompt.keypress("Press any key to return to the main menu".yellow.blink)
+    any_key_prompt.keypress("Press any key to return to the main menu".light_yellow.blink)
     system 'clear'
     main_menu
   end
