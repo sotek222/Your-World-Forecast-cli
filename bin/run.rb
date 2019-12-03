@@ -7,8 +7,6 @@ require 'whirly'
 require 'paint'
 require 'terminal-table'
 
-
-
 system 'clear'
 time_symbol
 play_music
