@@ -5,6 +5,17 @@ Users are able to get weekly reports of weather information provided by the Dark
 
 Users are also able to save a location for quick viewing of that location's current weather.
 
+### Built With:
+ - Ruby 
+ - [Dark Sky API](https://darksky.net/dev)  
+ - [MapQuest API](https://developer.mapquest.com/documentation/)
+
 ### Demo:
-[Demo Video](https://i.imgur.com/en6sw4L.gifv)
+[Demo Video]("https://i.imgur.com/en6sw4L.gif")
+
 ### Authors:
+ - [Brianna Dixon](https://github.com/bdix1111)
+ - [Matthew Masiello](https://github.com/sotek222)
+
+ ### License:
+ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
