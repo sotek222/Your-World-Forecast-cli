@@ -6,6 +6,5 @@ Users are able to get weekly reports of weather information provided by the Dark
 Users are also able to save a location for quick viewing of that location's current weather.
 
 ### Demo:
-![demo video]("")
+[Demo Video](https://i.imgur.com/en6sw4L.gifv)
 ### Authors:
-
