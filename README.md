@@ -11,7 +11,7 @@ Users are also able to save a location for quick viewing of that location's curr
  - [MapQuest API](https://developer.mapquest.com/documentation/)
 
 ### Demo:
-"https://i.imgur.com/en6sw4L.gif"
+https://i.imgur.com/en6sw4L.gif
 
 ### Authors:
  - [Brianna Dixon](https://github.com/bdix1111)
